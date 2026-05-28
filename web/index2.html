@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Community Event </title>
+
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+  <style>
+    .card{
+      border:1px solid black;
+      padding:10px;
+      margin:10px;
+    }
+  </style>
+</head>
+
+<body>
+
+<h1>Community Event</h1>
+
+<select id="filter">
+  <option value="All">All</option>
+  <option value="Music">Music</option>
+</select>
+
+<input type="text" id="search" placeholder="Search Event">
+
+<div id="events"></div>
+
+<form id="form">
+  <input type="text" id="name" placeholder="Name">
+  <input type="email" id="email" placeholder="Email">
+  <button type="submit">Register</button>
+</form>
+
+<script src="main2.js"></script>
+
+</body>
+</html>
