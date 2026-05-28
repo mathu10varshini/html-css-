@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Local Community Event Portal</title>
+
+    <link rel="stylesheet" href="styles.css">
+
+    
+    <style>
+        body {
+            background-color: #f4f4f4;
+        }
+
+        #welcomeBanner {
+            background-color: blue;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#events">Events</a>
+        <a href="#contact">Contact</a>
+    </nav>
+
+   
+    <div id="welcomeBanner">
+        <h1 style="color:red;">Welcome to Community Portal</h1>
+
+        <p>
+            Special Offer:
+            <span style="color:red; font-weight:bold;">
+                Free Registration
+            </span>
+        </p>
+    </div>
+
+    <section id="home">
+        <h2>About Us</h2>
+        <p class="highlight">
+            This portal helps residents register for community events.
+        </p>
+    </section>
+
+   
+    <section id="events">
+
+        <h2>Community Events</h2>
+
+        <table>
+            <tr>
+                <td>
+                    <img src="https://via.placeholder.com/200"
+                         alt="Music Event"
+                         title="Music Event"
+                         class="gallery-img">
+
+                    <p>Music Festival</p>
+                </td>
+
+                <td>
+                    <img src="https://via.placeholder.com/200"
+                         alt="Sports Event"
+                         title="Sports Event"
+                         class="gallery-img">
+
+                    <p>Sports Meet</p>
+                </td>
+
+                <td>
+                    <img src="https://via.placeholder.com/200"
+                         alt="Food Event"
+                         title="Food Event"
+                         class="gallery-img">
+
+                    <p>Food Carnival</p>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <img src="https://via.placeholder.com/200"
+                         alt="Dance Event"
+                         title="Dance Event"
+                         class="gallery-img">
+
+                    <p>Dance Show</p>
+                </td>
+
+                <td>
+                    <img src="https://via.placeholder.com/200"
+                         alt="Book Event"
+                         title="Book Event"
+                         class="gallery-img">
+
+                    <p>Book Fair</p>
+                </td>
+
+                <td>
+                    <img src="https://via.placeholder.com/200"
+                         alt="Art Event"
+                         title="Art Event"
+                         class="gallery-img">
+
+                    <p>Art Exhibition</p>
+                </td>
+            </tr>
+        </table>
+
+        
+        <h2>Event Registration</h2>
+
+        <form onsubmit="showMessage(); return false;">
+
+            <input type="text"
+                   placeholder="Enter Name"
+                   required
+                   autofocus>
+
+            <input type="email"
+                   placeholder="Enter Email"
+                   required>
+
+            <input type="date" required>
+
+            <select id="eventType" onchange="showFee()">
+                <option value="">Select Event</option>
+                <option value="100">Music - ₹100</option>
+                <option value="200">Sports - ₹200</option>
+            </select>
+
+            <p id="fee"></p>
+
+            <textarea id="feedback"
+                      placeholder="Enter Feedback"
+                      onkeyup="countChars()"></textarea>
+
+            <p id="charCount">Characters: 0</p>
+
+            <button type="submit">Register</button>
+
+            <output id="message"></output>
+
+        </form>
+
+        <h2>Event Promo</h2>
+
+        <video width="400" controls oncanplay="videoReady()">
+            <source src="sample.mp4" type="video/mp4">
+        </video>
+
+        <p id="videoMessage"></p>
+
+        
+        <button onclick="findLocation()">
+            Find Nearby Events
+        </button>
+
+        <p id="location"></p>
+
+    </section>
+
+    <section id="contact">
+        <h2>Contact Us</h2>
+        <p>Email: support@gmail.com</p>
+    </section>
+
+
+    <footer>
+        <p>© 2026 Community Portal</p>
+    </footer>
+
+    <script>
+
+        function showFee() {
+            let fee = document.getElementById("eventType").value;
+            document.getElementById("fee").innerHTML =
+                "Event Fee: ₹" + fee;
+        }
+
+        function countChars() {
+            let text =
+                document.getElementById("feedback").value;
+
+            document.getElementById("charCount").innerHTML =
+                "Characters: " + text.length;
+        }
+
+        function showMessage() {
+            document.getElementById("message").innerHTML =
+                "Registration Successful!";
+        }
+
+        function videoReady() {
+            document.getElementById("videoMessage").innerHTML =
+                "Video ready to play";
+        }
+
+        function findLocation() {
+
+            if (navigator.geolocation) {
+
+                navigator.geolocation.getCurrentPosition(
+                    function(position) {
+
+                        document.getElementById("location").innerHTML =
+                            "Latitude: " +
+                            position.coords.latitude +
+                            "<br>Longitude: " +
+                            position.coords.longitude;
+
+                    },
+
+                    function() {
+                        alert("Location access denied");
+                    },
+
+                    {
+                        enableHighAccuracy: true,
+                        timeout: 5000
+                    }
+                );
+
+            } else {
+                alert("Geolocation not supported");
+            }
+        }
+
+        window.onbeforeunload = function() {
+            return "Are you sure you want to leave?";
+        }
+
+    </script>
+
+</body>
+</html>
